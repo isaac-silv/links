@@ -29,14 +29,20 @@ public class Establishment {
     @OneToOne(mappedBy = "establishment_id")
     private Adress adress;
 
-    @OneToMany(mappedBy = "establisment_id")
+    @OneToMany(mappedBy = "establishment_id")
     private List<OpeningHour> openingHours;
 
+    @OneToMany(mappedBy = "establishment_id")
+    private List<Links> links;
+
+    @OneToMany(mappedBy = "establishment_id")
+    private List<SocialLinks> socialLinks;
+
     public Establishment() {
-    }   
+    }      
 
     public Establishment(Long id, String name, String description, String phone, String urlPhoto, String urlCover,
-            Adress adress, List<OpeningHour> openingHours) {
+            Adress adress, List<OpeningHour> openingHours, List<Links> links, List<SocialLinks> socialLinks) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -45,6 +51,8 @@ public class Establishment {
         this.urlCover = urlCover;
         this.adress = adress;
         this.openingHours = openingHours;
+        this.links = links;
+        this.socialLinks = socialLinks;
     }
 
     public Long getId() {
@@ -101,7 +109,7 @@ public class Establishment {
 
     public void setAdress(Adress adress) {
         this.adress = adress;
-    }
+    }    
 
     @Override
     public int hashCode() {
@@ -126,6 +134,14 @@ public class Establishment {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public List<SocialLinks> getSocialLinks() {
+        return socialLinks;
+    }
+
+    public void setSocialLinks(List<SocialLinks> socialLinks) {
+        this.socialLinks = socialLinks;
     }
 
     
